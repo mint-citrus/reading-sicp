@@ -43,8 +43,14 @@
 		(op (car seq)
 			(accumulate op init (cdr seq)))))
 
-(write (filter odd? (list 1 2 3 4 5)))
-(newline)
+(define (fib-iter a b count)
+	(if (= count 0)
+		b
+		(fib-iter (+ a b) a (- count 1))))
 
-(write (accumulate * 1 (list 1 2 3 4 5)))
+(define (fib x)
+	(fib-iter 1 0 x))
+	
+
+(write (fib 3))
 (newline)
