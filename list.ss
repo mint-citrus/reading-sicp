@@ -1,4 +1,4 @@
-(define map proc items
+(define (map proc items)
 	(if (null? items)
 	  	nil
 		(cons (proc (car items))
