@@ -30,5 +30,21 @@
 (define (square-tree tree)
 	(tree-map square tree))
 
-(write (square-tree (cons (list 1 2) (list 3 4))))
+(define (filter proc seq)
+	(cond ((null? seq) nil)
+		  ((proc (car seq))
+		   (cons (car seq)
+				 (filter proc (cdr seq))))
+		  (else (filter proc (cdr seq)))))
+
+(define (accumulate op init seq)
+	(if (null? seq)
+		init
+		(op (car seq)
+			(accumulate op init (cdr seq)))))
+
+(write (filter odd? (list 1 2 3 4 5)))
+(newline)
+
+(write (accumulate * 1 (list 1 2 3 4 5)))
 (newline)
