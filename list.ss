@@ -1,3 +1,5 @@
+(define nil '())
+
 (define (map proc items)
 	(if (null? items)
 	  	nil
@@ -15,9 +17,12 @@
 				   (count-leaves (cdr x))))))
 
 (define (tree-map proc tree)
-	(if ((not (pair? tree)))
-		(map proc tree)
-		(tree-map (car tree))))
+  	(write tree)
+	(newline)
+	(cond ((null? tree) nil)
+		  ((not (pair? tree)) (proc tree))
+		  (else (cons (tree-map proc (car tree))
+					  (tree-map proc (cdr tree))))))
 
 (define (square x)
 	(* x x))
