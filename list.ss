@@ -14,5 +14,16 @@
 		  (else (+ (count-leaves (car x))
 				   (count-leaves (cdr x))))))
 
-(write (count-leaves (cons (list 1 2 3) (list 4 5))))
+(define (tree-map proc tree)
+	(if ((not (pair? tree)))
+		(map proc tree)
+		(tree-map (car tree))))
+
+(define (square x)
+	(* x x))
+
+(define (square-tree tree)
+	(tree-map square tree))
+
+(write (square-tree (cons (list 1 2) (list 3 4))))
 (newline)
